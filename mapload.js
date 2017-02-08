@@ -2,12 +2,14 @@
 //var location = prompt("Please enter your location"); 
 
 //$(function () {
+var geocoder; 
 function initMap() { //Create map function 
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
+      center: {lat: -0, lng: 0},
       zoom: 12
     });
- 
+
+      
 
     var fsTable = new google.maps.FusionTablesLayer({  //Setup fusion table 
         suppressInfoWindows:false,
@@ -29,9 +31,17 @@ function initMap() { //Create map function
         map: map
          });
 
+
     var infoWindow = new google.maps.InfoWindow({map: map}); // Create geolocater 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
+
+             var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
           lat: position.coords.latitude,
@@ -41,14 +51,6 @@ function initMap() { //Create map function
         map.setZoom(12);
         map.setCenter(pos);
         
-
-     /*  $(document).ready(function() 
-            {
-                var queryUrlHead = 'https://www.googleapis.com/fusiontables/v2/query?sql=';
-                 var queryUrlTail = '1TXhPdo6TXv6z9gFYQemCuudcXqn9_bjKOLBz15aH&key=AIzaSyArARaaB5dBdXPdgBnbb363itYB1YSqyoU';                
-            });*/
-
-
       }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
@@ -57,11 +59,22 @@ function initMap() { //Create map function
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
     }
+  }
 
-}
-
-
-
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
