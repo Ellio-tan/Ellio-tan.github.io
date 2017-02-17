@@ -8,44 +8,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Find Melee</title>
-
-       <style>
-      #map {
-        height: 700px;
+    <style>
+     html,body {
+        margin: 0;
+        padding: 0;
+        height: 90%;
+        width: 100%; 
+        }
+      #map{
+        height:90%;
         width: 100%;
-       }
-    </style>
+      }      
 
+           </style>
   </head>
+
   <body>
-  
   <div class="header"> 
-    <h1> Find Melee </h1>
+      <h1> Find Melee </h1>
     </div>
+
   <div id="row">
       <input id="address" type="">
       <input id="submit" type="button" value="Enter your location">
   </div>
   <div id="map"></div>
-
-  <div class='container'>
-    <div class="row">
+  <div class='footer'>
         <div class="col-sm-4"> 
           <a href="https://twitter.com/Ellio_Tan">Twitter</a>
         </div>
          <div class="col-sm-4"> 
           <a href="https://findmelee.wordpress.com/">Blog</a>
         </div>
-        <div class="col-sm-4"> Made by Elliot Tan </div>
-    </div>
+        <div class="col-sm-4"> 
+        Made by Elliot Tan
+        </div>
   </div>
-
-
- 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
      <script src="mapload.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArARaaB5dBdXPdgBnbb363itYB1YSqyoU&callback=initMap"></script>
-   
   </body>
 </html>
