@@ -48,7 +48,7 @@ function initMap() { //Create map function
           lng: position.coords.longitude
         };
         cur_pos.setPosition(pos); 
-        map.setZoom(12);
+        map.setZoom(12.5);
         map.setCenter(pos);
         
       }, function() {
