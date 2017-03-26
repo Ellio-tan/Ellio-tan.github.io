@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!--MENU BAR styled in CSS file and implemented in head on top to place on top of webpage-->
+	<div id='cssmenu'>
+	<ul>
+	   <li><a href='index.html'><span>Home</span></a></li>
+	   <li><a href='map.html'><span>Map</span></a></li>
+	   <li><a href='about.html'><span>About</span></a></li>
+	   <li class='active'><a href='#'><span>Contact</span></a></li>
+	</ul>
+	</div>
+	<!--Title to appear on webpage TAB-->
+	<title>Contact Us</title>
+	<!--Metadata tags used to provide data for HTML document-->
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Scripts to be used in script section-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<!--DIVS used in map-->
+	<div id="results"></div>
+	<div id="map"></div>
+	<!--Link to CSS file for styling webpage-->
+	<link rel="stylesheet" type="text/css" href="A4CSS.css">	
+
+</head>
+<body>
+	<!--Background image with responsive styling-->
+	<img src="./files/background.jpeg" style="width:100%;height:100%;position:fixed;top:0;left:0;z-index:-5000;">	
+<h1>Contact Us</h1>
+
+<!--Div class called from CSS-->
+<div class = "design">
+	
+		<!--paragraph text with CSS p style-->
+		<p>Hanna Demyk     |     Nhattan Nguyen     |     Elliot Tan</p>
+		
+		<center>
+		
+		<!--Twitter button script to tweet to Hanna-->
+		<a href="https://twitter.com/intent/tweet?screen_name=hannatogeo" class="twitter-mention-button" data-size="large" data-related="hannatogeo">
+			Tweet to @hannatogeo
+		</a>
+		<script>
+			!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){js=d.createElement(s);
+			js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+			fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+		
+		<!--Twitter button script to tweet to Nhattan-->
+		<a href="https://twitter.com/intent/tweet?screen_name=NhattanNguyen" class="twitter-mention-button" data-size="large">
+			Tweet to @NhattanNguyen
+		</a>
+		<script>!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){js=d.createElement(s);
+			js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+			fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+			
+		<!--Twitter button script to tweet to Elliot-->
+		<a href="https://twitter.com/intent/tweet?screen_name=Ellio_Tan" class="twitter-mention-button" data-size="large">
+			Tweet to @Ellio_Tan
+		</a>	
+		<script>!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){js=d.createElement(s);
+			js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+			fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+		</center>
+		<p><br><p>
+		<center>
+		<!--Follow Hanna on Twitter-->		
+		<a class="twitter-follow-button" href="https://twitter.com/Hannatogeo">Follow @hannatogeo</a>
+		<br>
+		<!--Follow Nhattan on Twitter-->		
+		<a class="twitter-follow-button" href="https://twitter.com/NhattanNguyen">Follow @NhattanNguyen</a>
+		<br>
+		<!--Follow Elliot on Twitter-->		
+		<a class="twitter-follow-button" href="https://twitter.com/Ellio_Tan">Follow @Ellio_Tan</a>
+		</center>
+</div>
+</body>
+</html>

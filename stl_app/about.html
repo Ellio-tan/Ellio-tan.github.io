@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!--MENU BAR styled in CSS file and implemented in head on top to place on top of webpage-->
+	<div id='cssmenu'>
+	<ul>
+	   <li><a href='index.html'><span>Home</span></a></li>
+	   <li><a href='map.html'><span>Map</span></a></li>
+	   <li class='active'><a href='#'><span>About</span></a></li>
+	   <li class='last'><a href='contact.html'><span>Contact</span></a></li>
+	</ul>
+	</div>
+	<!--Title to appear on webpage TAB-->
+	<title>About Us</title>
+	<!--Metadata tags used to provide data for HTML document-->
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Scripts to be used in script section-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<!--DIVS used in map-->
+	<div id="results"></div>
+	<div id="map"></div>
+	<!--Link to CSS file for styling webpage-->
+	<link rel="stylesheet" type="text/css" href="A4CSS.css">	
+
+</head>
+<body>
+	<!--Background image with responsive styling-->
+	<img src="./files/background.jpeg" style="width:100%;height:100%;position:fixed;top:0;left:0;z-index:-5000;">	
+	
+	<!--Header title with CSS h1 style-->
+	<h1>Who are we?</h1>
+
+	<!--Div class called from CSS-->
+	<div class = "design">
+		<!--Paragraph text with CSS p style-->
+		<p>We are students in GEOG 407: Principles of the GeoWeb @McGill University, that's who.</p>
+		<!--Twitter widget created through Twitter to allow #neogeoweb timeline feed to appear on page-->
+		<center>
+		<a class="twitter-timeline" href="https://twitter.com/hashtag/neogeoweb" data-widget-id="714657721916727296">#neogeoweb Tweets</a>
+		<script>!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],
+			p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){
+			js=d.createElement(s);js.id=id;
+			js.src=p+"://platform.twitter.com/widgets.js";
+			fjs.parentNode.insertBefore(js,fjs);
+			}}(document,"script","twitter-wjs");
+		</script>
+	</div>
+
+</center>
+</body>
+</html>

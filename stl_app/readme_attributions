@@ -1,0 +1,32 @@
+READ ME // THE FOLLOWING ARE WHERE OUTSIDE DATA IS SOURCED FROM:
+
+***WORKS CITED***
+
+1. City of Laval data (LIVE FEEDS ACCESS AND GTFS BUS DATA FILE): http://www.stl.laval.qc.ca/en/stl-synchro/developers/
+2. GTFS file for City of Laval STL: https://developers.google.com/transit/gtfs/
+3. SQL AND FUSION TABLES: https://developers.google.com/fusiontables/docs/v1/sql-reference.
+4. Yang, C., Goodchild, M., Huang, Q., Nebert, D., Raskin, R., Xu, Y., Bambacus, M. and Fay, D. 2011. Spatial Cloud Computing: How geospatial sciences could use and help to shape cloud computing? International Journal on Digital Earth 4 (4): 305-329. //PART OF OUR REPORT REFLECTION
+5. GOOGLE MAPS DEVELOPER PAGES //to learn how to implement the map https://developers.google.com/maps/
+6. GOOGLE FUSION TABLES //for cloud database https://sites.google.com/site/fusiontablestalks/home
+7. GOOGLE SEARCHES ON WEBSITES LIKE GITHUB, STACKEXCHANGE, STACKOVERFLOW, AND MORE.
+8. GOOGLE DEVELOPER JAVASCRIPT PAGES https://developers.google.com/maps/documentation/javascript/
+9. W3SCHOOLS USED IN THE ORIGINAL CREATION OF THE CSS FILE, JQUERY TIPS, STYLING, JAVASCRIPT AND MORE http://www.w3schools.com/
+10. Fusion Tables getting started blog to mashup with Google Maps, from http://mappingmashups.net/2012/11/29/mapping-with-google-fusion-tables/
+
+***CSS MENU BAR***
+
+CSS Menu Bar Template, implemented through the A4CSS.css styling sheet onto the webpages, was found at http://cssmenumaker.com/menu/simple-responsive-menu, downloaded and then pasted into our CSS FILE
+
+***IMAGES***
+
+BUS IMAGE ON INDEX PAGE
+from Benjamin STARWARZ on ICONFINDER.COM, CREATIVE COMMONS (ATTRIBUTION 3.0 UNPORTED)
+https://www.iconfinder.com/icons/905668/bus_car_front_renault_transport_transportation_icon#size=128
+
+ONCLICK PERSON MARKER ICON
+from Chameleon Design on ICONFINDER.COM, CREATIVE COMMONS (ATTRIBUTION 3.0 UNPORTED)
+https://www.iconfinder.com/icons/1011776/behaviour_dance_fun_happy_human_man_icon#size=128
+
+WEBPAGE BACKGROUND IMAGE
+from https://www.unsplash.com, CREATIVE COMMONS ZERO LICENSE (USE FOR ANYTHING YOU WANT)
+
