@@ -6,19 +6,45 @@ function initMap() { //Create map function
 
       
 
-    var fsTable = new google.maps.FusionTablesLayer({  //Set up layer using data from Fusion Table 
+    var weeklyIcon = new google.maps.FusionTablesLayer({  //Set up layer using data from Fusion Table 
         suppressInfoWindows:false,
         query:
         {
+            
+            select: 'Location',
             from: '1TXhPdo6TXv6z9gFYQemCuudcXqn9_bjKOLBz15aH',
-            select: 'Location'
+                     
+        },
+        styles: [{
+           where: "'Tournament Type' = 'Weekly'",
+            markerOptions: {
+            iconName: "large_red"
+            }
+          }, {
+           where: "'Tournament Type' = 'Major'",
+            markerOptions: {
+            iconName: "large_green"
+            }
+          },
+        ],
+    }); weeklyIcon.setMap(map);
+
+
+
+   /* var monthlyIcon = new google.maps.FusionTablesLayer({  //Set up layer using data from Fusion Table 
+        suppressInfoWindows:false,
+        query:
+        {
+             select: 'Tournament Type',
+            from: '1TXhPdo6TXv6z9gFYQemCuudcXqn9_bjKOLBz15aH',
+            where: 'Tournament Type = Major'
         },
         styles: [{
          markerOptions: {
-            iconName: "large_red"
+            iconName: "large_green"
             }
         }],
-    }); fsTable.setMap(map);
+    }); monthlyIcon.setMap(map);
 
 
   var cur_pos = new google.maps.Marker({
