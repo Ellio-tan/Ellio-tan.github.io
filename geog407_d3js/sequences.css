@@ -1,0 +1,53 @@
+
+#main1 {
+  float: left;
+   font-family: arial;
+  width: 800px;
+}
+
+#sidebar {
+  float: right;
+   font-family: arial;
+  width: 200px;
+}
+
+#sequence {
+  width: 1000px;
+   font-family: arial;
+  height: 70px;
+}
+
+#legend {
+  padding: 10px 0 0 3px;
+   font-family: arial;
+   color: #fff;
+}
+
+#sequence text, #legend text {
+  font-weight: 600;
+  fill: #fff;
+}
+
+#chart {
+  position: relative;
+}
+
+#chart path {
+  stroke: #fff;
+}
+
+#explanation {
+  position: absolute;
+  top: 260px;
+  left: 305px;
+  width: 140px;
+  text-align: center;
+  font-weight: bold;
+  font-family: arial;
+  color: black;
+  z-index: -1;
+}
+
+#number {
+  font-size: 2.5em;
+}

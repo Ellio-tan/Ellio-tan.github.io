@@ -1,0 +1,137 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	
+	<!--MENU BAR styled in CSS file and implemented in head on top to place on top of webpage-->
+	<div id='cssmenu'>
+	<ul>
+	   <li><a href='index.html'><span>News</span></a></li>
+	   <li class="active"><a href='about.html'><span>About</span></a></li>
+	   <li class='last'><a href='contact.html'><span>Contact</span></a></li>
+	</ul>
+	</div>
+	<!--Title to appear on webpage TAB-->
+	<title>NEOGEO NEWS</title>
+	<!--Metadata tags used to provide data for HTML document-->
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Scripts to be used in script section-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+					 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+				<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+				<link rel="stylesheet" type="text/css" href="sequences.css"/>
+	<!--DIVS used in map-->
+	<div id="results"></div>
+	<div id="map"></div>
+	<!--Link to CSS file for styling webpage-->
+	<link rel="stylesheet" type="text/css" href="style.css">	
+
+</head>
+<body>
+	
+	<!--Background image with responsive styling-->
+	<img src="./files/background.jpg" style="width:100%;height:100%;position:fixed;top:0;left:0;z-index:-5000;">	
+	
+<!--Spacing between menu bar and div-->
+<p><br><p> 
+
+<!--START OF D3 Visualization-->
+<div class = "design">
+
+<canvas width="800" height="300"></canvas>		
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+		var canvas = document.querySelector("canvas"),
+		    context = canvas.getContext("2d"),
+		    width = canvas.width,
+		    height = canvas.height;
+
+		var n = 200,
+		    tau = 2 * Math.PI,
+		    nodes = d3.range(n).map(function() { return {radius: Math.random() * 8 + 2}; });
+
+		var force = d3.layout.force()
+		    .charge(0.5)
+		    .gravity(0)
+		    .friction(1)
+		    .nodes(nodes)
+		    .size([width, height])
+		    .start();
+
+		var stroke = d3.scale.linear()
+		    .domain([0, 1])
+		    .range(["steelblue", "brown"]);
+
+		force.on("tick", function(e) {
+		  var q = d3.geom.quadtree(nodes), node, i, vx, vy;
+		  context.clearRect(0, 0, width, height);
+		  context.lineWidth = 1.5;
+
+		  for (i = 0; i < n; ++i) {
+		    q.visit(collide(nodes[i]));
+		  }
+
+		  for (i = 0; i < n; ++i) {
+		    node = nodes[i];
+		    context.beginPath();
+		    context.arc(node.x, node.y, node.radius - 0.75, 0, tau);
+		    context.strokeStyle = stroke((vx = node.x - node.px) * vx + (vy = node.y - node.py) * vy);
+		    context.stroke();
+		  }
+
+		  context.beginPath();
+		  for (i = 0; i < n; ++i) {
+		    node = nodes[i];
+		    context.moveTo(node.x, node.y);
+		    context.lineTo(node.x + (node.x - node.px) * 3, node.y + (node.y - node.py) * 3);
+		  }
+		  context.strokeStyle = "#fff";
+		  context.stroke();
+
+		  force.resume();
+		});
+
+		function collide(node) {
+		  var r = node.radius + 16,
+		      nx1 = node.x - r,
+		      nx2 = node.x + r,
+		      ny1 = node.y - r,
+		      ny2 = node.y + r;
+		  return function(quad, x1, y1, x2, y2) {
+		    if (quad.point && (quad.point !== node)) {
+		      var x = node.x - quad.point.x,
+		          y = node.y - quad.point.y,
+		          l = Math.sqrt(x * x + y * y),
+		          r = node.radius + quad.point.radius;
+		      if (l < r) {
+		        l = (l - r) / (l * 2);
+		        node.x -= x *= l;
+		        node.y -= y *= l;
+		        quad.point.x += x;
+		        quad.point.y += y;
+		      }
+		    }
+		    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+		  }
+		}
+</script>
+
+		<center>
+		<a class="twitter-timeline" href="https://twitter.com/hashtag/neogeoweb" data-widget-id="714657721916727296">#neogeoweb Tweets</a>
+		<script>!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0],
+			p=/^http:/.test(d.location)?'http':'https';
+			if(!d.getElementById(id)){
+			js=d.createElement(s);js.id=id;
+			js.src=p+"://platform.twitter.com/widgets.js";
+			fjs.parentNode.insertBefore(js,fjs);
+			}}(document,"script","twitter-wjs");
+		</script>
+		</center>
+
+</div>
+</html>
