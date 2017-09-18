@@ -21,9 +21,19 @@ function initMap() { //Create map function
             iconName: "large_red"
             }
           }, {
-           where: "'Tournament Type' = 'Major'",
+           where: "'Tournament Type' = 'Monthly'",
             markerOptions: {
             iconName: "large_green"
+            }
+          },{
+            where: "'Tournament Type' = 'Major'",
+            markerOptions:{
+              iconName: "large_blue"
+            }
+          }, {
+            where: "'Tournament Type' = 'Regional'",
+            markerOptions: {
+              iconName: "large_yellow"
             }
           },
         ],
@@ -31,21 +41,7 @@ function initMap() { //Create map function
 
 
 
-   /* var monthlyIcon = new google.maps.FusionTablesLayer({  //Set up layer using data from Fusion Table 
-        suppressInfoWindows:false,
-        query:
-        {
-             select: 'Tournament Type',
-            from: '1TXhPdo6TXv6z9gFYQemCuudcXqn9_bjKOLBz15aH',
-            where: 'Tournament Type = Major'
-        },
-        styles: [{
-         markerOptions: {
-            iconName: "large_green"
-            }
-        }],
-    }); monthlyIcon.setMap(map);
-
+   /* 
 
   var cur_pos = new google.maps.Marker({
         title: "You are here!",
