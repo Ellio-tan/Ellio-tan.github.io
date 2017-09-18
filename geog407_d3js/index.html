@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	
+	<!--MENU BAR styled in CSS file and implemented in head on top to place on top of webpage-->
+	<div id='cssmenu'>
+	<ul>
+	   <li class='active'><a href='index.html'><span>News</span></a></li>
+	   <li><a href='about.html'><span>About</span></a></li>
+	   <li class='last'><a href='contact.html'><span>Contact</span></a></li>
+	</ul>
+	</div>
+	<!--Title to appear on webpage TAB-->
+	<title>NEOGEO NEWS</title>
+	<!--Metadata tags used to provide data for HTML document-->
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Scripts to be used in script section-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+					 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+				<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+				<link rel="stylesheet" type="text/css" href="sequences.css"/>
+	<!--DIVS used in map-->
+	<div id="results"></div>
+	<div id="map"></div>
+	<!--Link to CSS file for styling webpage-->
+	<link rel="stylesheet" type="text/css" href="style.css">	
+
+</head>
+<body>
+	
+<body bgcolor="#fff">	
+	
+<!--Spacing between menu bar and div-->
+<p><br><p> 
+
+<div class = "design">
+		<p>
+		<h1>Fears of new wave of refugees as concerns grow that Syrian cease fire treaty might collapse</h1>
+		<p>
+		<img src="./files/img.jpg" style="width:50%;height:50%;position:center">
+		<p>
+		<b>Saturday April 15, 2016</b>
+		<p>
+							(DISCLAIMER: This is a fictitious article about the Syrian refugee crisis written in the context of a data visualization course project by Hanna Demyk, Nhattan Nguyen and Elliot Tan.)
+							</p><p>
+							International observers are increasingly concerned that a fragile ceasefire treaty and ongoing negotiations in Geneva about the Syrian civil war might be undermined by recent fighting in Aleppo and Homs. 
+							The opposition has accused the Assad regime of conducting airstrikes on civilians. Humanitarian workers on the ground have deplored that the renewed violence might trigger new waves of internally displaced 
+							people seeking to escape the destruction. The United Nations High Commissioner for Refugees (UNHCR) is already reporting important difficulties of managing the current flow of refugees.
+							</p><p>
+							Meanwhile, Turkey and Lebanon have warned that they urgently need millions of dollars more in aid to cope with the increasing number of refugees. Turkish Prime Minister Erdogan stressed that it 
+							would be difficult for Turkey to abide by the EU deal to return refugees if the European Union does not fulfill the promised €6bn in aid promised. The deal has been condemned by human rights groups
+							 like Amnesty International who argue the deal violates international and European law by sending refugees back to Turkey, a country that has not signed the UN refugee convention, that has sent refugees 
+							 back to Syria, and that has failed to adequately provide Syrians with work, forcing the latter to have their children work to gain sufficient income. The EU has argued that the deal is necessary to halt the flow 
+							 of refugees coming into Greece and avoid a humanitarian crisis in a country already struggling with a major economic crisis.
+							</p><p>
+							However, rights groups are accusing the EU of hypocrisy about their ambition. Data provided by UNHCR from previous years shows that only about 112,000 refugees have been resettled 
+							compared to the 130,000 spots pledged by various countries. While some ambitious countries like Canada and Germany have managed to achieve over 90% of their pledged refugee resettlement target 
+							of about 40,000 respectively, others lag far behind. The United States has only resettled 1,999 refugees and has no known pledge even though UNHCR has submitted 32,369 Syrian refugees for
+							 resettlement consideration. However, these numbers are insignificant compared to the 4 million Syrian refugees currently staying in Turkey, Lebanon, Jordan, Iraq, and Egypt, constituting 95% of the total 
+							 Syrian refugee population. UNHCR and Amnesty International say that 10% of these vulnerable refugees need to be resettled, a significant 400,000 compared to the mere 130,000 pledged so far. 
+							 The United Nations is calling for renewed pledges from donor countries to ramp up their resettlement program by the end of the year and to increase funding for the five host countries to deal with 
+							 the influx of refugees. Nick Clegg, deputy prime minister of the UK, has announced that the British resettlement program will focus on the most vulnerable, including “women and girls who have 
+							 experienced or are at risk of sexual violence; the elderly; and survivors of torture and individuals with disabilities”.
+							</p>
+		</p>
+</div>
+	
+</body>
+
+		<!-- D3 Visualization Starts Here -->	
+		<h1>Pledged vs. Actual Refugees Resettled, by Country</h1>
+					<div id="sidebar">
+			  <input type="checkbox" id="togglelegend"> Legend<br/>
+			  <div id="legend" style="visibility: hidden;"></div>
+	</div>
+		<div id="sequence"></div>
+			 <div id="chart">
+				<div id="explanation" style="visibility: hidden;">
+						  <span id="number"></span><br/>
+						  pleaded vs. actual refugees resettled
+				</div>
+			 </div>
+
+			<script type="text/javascript" src="sequences.js"></script>
+	<script type="text/javascript">
+			  // Hack to make this example display correctly in an iframe on bl.ocks.org
+			  d3.select(self.frameElement).style("height", "700px");
+	</script> 
+
+</html>
