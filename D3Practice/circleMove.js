@@ -13,11 +13,11 @@ function submit(){
 
 
 	
-	var circleCirc = Number(userRadius);
-	var coordSize = (circleCirc*10); //10 abritraily chosen, fine now because the circles will never go outside the box 
+	var circleRad = Number(userRadius);
+	var coordSize = (circleRad*10); //10 abritraily chosen, fine now because the circles will never go outside the box 
 
 	function createCoord(){
-		var cd = ((Math.random()*(coordSize-circleCirc))+ circleCirc);
+		var cd = ((Math.random()*(coordSize-circleRad))+ circleRad);
 		return cd; 
 
 }
@@ -66,11 +66,11 @@ function submit(){
 	circleArray.reverse(); // Must reverse the array so the largest circle is on the "bottom" of the stack
 
 	
-	//console.log(typeof(circleCirc) + " is the type of circleCird");
+	//console.log(typeof(circleRad) + " is the type of circleCird");
 
 	var svgContainer = d3.select("body").append("svg") //create a container for the svg shape
-										.attr("width", coordSize+ circleCirc)
-										.attr("height", coordSize+ circleCirc)
+										.attr("width", coordSize+ (2*circleRad))
+										.attr("height", coordSize+ (2*circleRad))
 										.style("border", "1px solid black");
 
 	var circles = svgContainer.selectAll("circle") //Creates "nodes" for the circles based on how many indices are in the circle array
