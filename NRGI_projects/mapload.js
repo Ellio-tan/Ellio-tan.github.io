@@ -45,9 +45,9 @@ function initMap() { //Create map function
     }); projIcon.setMap(map); //end of layer setup
 
 
-      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
+   //   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
 
-      console.log(projIcon[1]);
+     // console.log(projIcon[1]);
   }
 
 
