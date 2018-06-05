@@ -8,7 +8,7 @@ $.ajax({
   type: 'GET',
 
   // The URL to make the request to.
-  url: "http://opendata.toronto.ca/transportation/tmc/rescucameraimages/Data/tmcearthcameras.json",
+  url: "https://opendata.toronto.ca/transportation/tmc/rescucameraimages/Data/tmcearthcameras.json",
 
   // The 'contentType' property sets the 'Content-Type' header.
   // The JQuery default for this property is
