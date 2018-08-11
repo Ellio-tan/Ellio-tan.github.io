@@ -6,13 +6,14 @@ body, html {
 
 	
 
-	background-image: url("./dataFiles/lakeOntarioDawn.jpg");
+	background-image: url("lakeOntarioDawn.jpg");
 	background-position: relative;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 
 }
 h2{
+	font-size: 3vw;
 	text-align: center;
 	padding: 10px;
 }
@@ -23,7 +24,8 @@ a{
 
 	text-align: center;
 	padding: 20px;
-	font-size: 20px;
+	font-size: 2vw;
+	font-
     text-transform: uppercase;
     letter-spacing: 0.06em; 
     line-height: 10px;
