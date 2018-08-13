@@ -4,8 +4,6 @@ body, html {
 
 	height:100%;
 
-	
-
 	background-image: url("./dataFiles/lakeOntarioDawn.jpg");
 	background-position: relative;
 	background-repeat: no-repeat;
@@ -23,15 +21,18 @@ a{
 .links{
 
 	text-align: center;
-	padding: 20px;
-	font-size: 2vw;
-	font-
+	padding: 10px;
+	font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 0.06em; 
     line-height: 10px;
 }
 
 .contact{
+
 	text-align: center;
 	margin: 40px;
+}
+.bio{
+	display: none;
 }
