@@ -6,7 +6,7 @@ body, html {
 
 	
 
-	background-image: url("lakeOntarioDawn.jpg");
+	background-image: url("./dataFiles/lakeOntarioDawn.jpg");
 	background-position: relative;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
