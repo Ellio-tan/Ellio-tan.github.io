@@ -2,7 +2,22 @@
 <head>
 <title> NorCal PR </title>
 	<meta charset="UTF-8" />
-	<link href='norcal.css' rel='stylesheet' type='text/css'>
+	<link href='custom.css' rel='stylesheet' type='text/css'>
+	<style>
+	div.tooltip {	
+	    position: absolute;			
+	    text-align: center;			
+	    width: auto;					
+	    height: 28px;					
+	    padding: 2px;				
+	    font: 12px sans-serif;		
+	    background: lightsteelblue;	
+	    border: 0px;		
+	    border-radius: 8px;			
+	    pointer-events: none;			
+	}
+
+</style>
 </head>
 <body>
 <select id = "playerName"></select>
@@ -37,6 +52,12 @@
   	var seriesName = d3.keys(data[0]).filter(function(key){
   		return key !=="date";
   		});
+
+//Set up tooltip
+var div = d3.select("body").append("div")	//Append a div under class tooltip
+    .attr("class", "tooltip")				
+    .style("opacity", 0)
+    .data(data)
 
 // Populate drop down menu
   var sel = document.getElementById('playerName');
@@ -96,23 +117,13 @@
 	          .attr("text-anchor", "end")
 	          .text("Player position");
 
-/*
-    h1.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top / 6))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "25px") 
-        .style("text-decoration", "underline")  
-        .text("Timeline of NorCal PR Players Super Smash Bros Melee");
-        */
-
      //Update graph function
     // on change update graph
 	 	d3.select("#playerName")
 		.on("change", function(){
 
 			//Grab name of dropdown box 
-			selName = sel.options[sel.selectedIndex].value
+		selName = sel.options[sel.selectedIndex].value
 			
 		if(document.getElementById(selName) == null){
 
@@ -122,30 +133,59 @@
 	      .x(function(d) {return x(d.date); }) 
 	      .y(function(d) { return y(d[selName]); }); // needs to be in the brackets 
 
-	     data.forEach(function(d){ //Add values
+	     data.forEach(function(d){ //Parse values to type int 
 		    d[selName]= +d[selName];	
-		 });
+		})
+		 
 
+
+	     var color = createRandomColor()
 	     // Create line
 	     g.append("path")
 	    .datum(data)
 	    .attr("id", selName)
 	    .attr("fill", "none")
-	    .attr("stroke", createRandomColor())
-	    .attr("stroke-width", 5)
+	    .attr("stroke", color)
+	    .attr("stroke-width", 3)
 	    .attr("d", newLine);
+
 
 	     g.selectAll("dot")
           .data(data)
           .enter().append("circle")
-            .attr("r", 3.5)
+          .filter(function(d){ return d[selName] != 0;})
+          .attr('id', selName)          
+            .attr("r", 7)
+            .attr("stroke", "black")
+            .attr("stroke-width", 2)
+            .attr("fill", color)
             .attr("cx", function(d) { return x(d.date); })
-            .attr("cy", function(d) { return y(d[selName]); });
-
+            .attr("cy", function(d) { return y(d[selName]); })
+            .on("mouseover", function(d){
+				var name = d3.select(this).attr('id')
+				div.transition()
+					.duration(200)
+					.style('opacity', .9);
+				div
+					.html( name+ "</br>" )
+					.style("left", (d3.event.pageX) + "px")			    
+					.style("top", (d3.event.pageY - 28) + "px")
+			})
+				.on("mouseout", function(d) { // mouseout function which removes div? 
+			//d3.select(this)
+			div.transition()		
+			    .duration(500)		
+			    .style("opacity", 0);	
+			});	
+/*
+    	g.append('text')
+    	.attr("text-anchor", "start")
+    	.text(selName)*/
 		} //End of if statement
 	})//End of adding lines
 	
-	// Add in mouse over functionality, possibly zoom in?   
+	// Add in mouse over functionality, possibly zoom in? 
+	//End of stuff that calls in d3  
     });	
 
     </script>
