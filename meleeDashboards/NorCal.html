@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <head>
 <title> NorCal PR </title>
-<meta charset="UTF-8" />
+	<meta charset="UTF-8" />
+	<link href='custom.css' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
-  <h1 align = "center"> Timeline of the Super Smash Bros. Melee Norcal PR </h1>
-  <svg width = "650" height = "650"></svg>
+<select id = "playerName"></select>
+<h1>Timeline of NorCal PR Players in Super Smash Bros Melee</h1>
+  <svg width = "900" height = "650"></svg> 
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <select id = "playerName"></select>
+
   <script>
 
 	function createRandomColor(){ //Creates a random colour from the HTML colour list 
@@ -29,6 +30,7 @@
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
+
   d3.csv("https://elliot-tan.github.io/dataFiles/norcalPR2.csv", function(error, data){
   	
   	// Get list of players
@@ -45,6 +47,8 @@
 	    sel.appendChild(opt);
 	}
 
+
+//Set up data
 	var parseTime = d3.timeParse("%m/%e/%Y");
 
 	var x = d3.scaleTime()
@@ -60,10 +64,12 @@
    	d.date = parseTime(d.date);
  	 });
 
-		 
+		// Set domain
         x.domain(d3.extent(data, function(d) {return d.date; }));
-        y.domain(d3.extent(data, function(d) { return d.YCZ6 }));
+        y.domain([1, d3.max(data, function(d) { return d.YCZ6 })]);
+
         //Set scale of x axis 
+        
         g.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x))
@@ -75,18 +81,30 @@
           "translate(" + (width/2) + " ," + 
                          (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
-        .text("Year");
+        .text("Date");
 
        // Set scale of y axis
+       
         g.append("g")
-          .call(d3.axisLeft(y))
+          .call(d3.axisLeft(y)
+          	.ticks(25))
           .append("text")
-          .attr("fill", "#000")
-          .attr("transform", "rotate(-90)")
-          .attr("y",- 60)
-          .attr("dy", "0.71em")
-          .attr("text-anchor", "end")
-          .text("Player position");
+	          .attr("fill", "#000")
+	          .attr("transform", "rotate(-90)")
+	          .attr("y",- 60)
+	          .attr("dy", "0.71em")
+	          .attr("text-anchor", "end")
+	          .text("Player position");
+
+/*
+    h1.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 6))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "25px") 
+        .style("text-decoration", "underline")  
+        .text("Timeline of NorCal PR Players Super Smash Bros Melee");
+        */
 
      //Update graph function
     // on change update graph
@@ -96,26 +114,24 @@
 			//Grab name of dropdown box 
 			selName = sel.options[sel.selectedIndex].value
 			
-			if(document.getElementById(selName) == null){
+		if(document.getElementById(selName) == null){
 
 			// Set up new line
 		  var newLine = d3.line()
-	      .defined(function (d) { return  d[selName]!= 0; })
+	      .defined(function (d) { return  d[selName] != "0"; })
 	      .x(function(d) {return x(d.date); }) 
 	      .y(function(d) { return y(d[selName]); }); // needs to be in the brackets 
 
-		
 	     data.forEach(function(d){ //Add values
-		         d[selName]= +d[selName];		      	
-		      });
+		    d[selName]= +d[selName];	
+		 });
+
 	     // Create line
 	     g.append("path")
 	    .datum(data)
 	    .attr("id", selName)
 	    .attr("fill", "none")
 	    .attr("stroke", createRandomColor())
-	    //.attr("stroke-linejoin", "round")
-	    //.attr("stroke-linecap", "round")
 	    .attr("stroke-width", 5)
 	    .attr("d", newLine);
 
@@ -124,12 +140,7 @@
           .enter().append("circle")
             .attr("r", 3.5)
             .attr("cx", function(d) { return x(d.date); })
-            .attr("cy", function(d) { 
-              if (typeof(d[selName])== "string"){
-                console.log(typeof(d[selName]))
-                return;
-                }else{
-              return y(d[selName]); }});
+            .attr("cy", function(d) { return y(d[selName]); });
 
 		} //End of if statement
 	})//End of adding lines
