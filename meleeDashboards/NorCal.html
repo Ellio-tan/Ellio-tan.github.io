@@ -5,12 +5,11 @@
 </head>
 
 <body>
+  <h1 align = "center"> Timeline of the Super Smash Bros. Melee Norcal PR </h1>
   <svg width = "650" height = "650"></svg>
-   <select id = "playerName"></select>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-
+  <select id = "playerName"></select>
   <script>
-
 
 	function createRandomColor(){ //Creates a random colour from the HTML colour list 
 		var letters = '0123456789ABCDEF'
@@ -21,6 +20,7 @@
 		return color; 
 	}
 
+
     //Create border margins for the svg element
   var svg = d3.select("svg"),
     margin = {top: 20, right: 20, bottom: 50, left: 100},
@@ -28,7 +28,6 @@
     height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
- 
 
   d3.csv("https://elliot-tan.github.io/dataFiles/norcalPR2.csv", function(error, data){
   	
@@ -36,7 +35,6 @@
   	var seriesName = d3.keys(data[0]).filter(function(key){
   		return key !=="date";
   		});
-
 
 // Populate drop down menu
   var sel = document.getElementById('playerName');
@@ -47,20 +45,21 @@
 	    sel.appendChild(opt);
 	}
 
+	var parseTime = d3.timeParse("%m/%e/%Y");
 
-   var parseTime = d3.timeParse("%m/%e/%Y"); //Parse in m/d/y properly 
+	var x = d3.scaleTime()
+	    .rangeRound([0, width]);
 
-   var x = d3.scaleTime() //Scale time to the axis
-        .rangeRound([0, width]);
-   var y = d3.scaleLinear()
-        .rangeRound([1, height]);
+	var y = d3.scaleLinear()
+	    .rangeRound([0, height]);
+
     if (error) throw error;
-      
-       data.forEach(function(d){
-       d.date = parseTime(d.date);
-      // d.Shroomed = +d.Shroomed; 
-      });
-	
+
+      //Parse date information
+   data.forEach(function(d){
+   	d.date = parseTime(d.date);
+ 	 });
+
 		 
         x.domain(d3.extent(data, function(d) {return d.date; }));
         y.domain(d3.extent(data, function(d) { return d.YCZ6 }));
@@ -70,7 +69,7 @@
         .call(d3.axisBottom(x))
         .select(".domain")
         
-        //Set x axis label
+
         g.append("text")
         .attr("transform",
           "translate(" + (width/2) + " ," + 
@@ -78,53 +77,49 @@
         .style("text-anchor", "middle")
         .text("Year");
 
-        //console.log(margin.right)
-
-       // Set y axis scale and label
+       // Set scale of y axis
         g.append("g")
           .call(d3.axisLeft(y))
+          .append("text")
+          .attr("fill", "#000")
+          .attr("transform", "rotate(-90)")
+          .attr("y",- 60)
+          .attr("dy", "0.71em")
+          .attr("text-anchor", "end")
+          .text("Player position");
 
-        g.append("text")
-        .attr("fill", "#000")
-        .attr("transform", "translate(" + (-margin.left) + "," + (height/2) + ")", "rotate(-90)")
-        .text("Rank");
      //Update graph function
     // on change update graph
 	 	d3.select("#playerName")
 		.on("change", function(){
+
+			//Grab name of dropdown box 
 			selName = sel.options[sel.selectedIndex].value
 			
+			if(document.getElementById(selName) == null){
+
+			// Set up new line
 		  var newLine = d3.line()
 	      .defined(function (d) { return  d[selName]!= 0; })
 	      .x(function(d) {return x(d.date); }) 
 	      .y(function(d) { return y(d[selName]); }); // needs to be in the brackets 
-		  
-      var l = 0; 
 
-     data.forEach(function(d){
-        if (d[selName] == 0){
-          //console.log('here')
-     		return;
-      }
-      else{
-          //console.log(d[selName])
-	         d[selName]= +d[selName];
+		
+	     data.forEach(function(d){ //Add values
+		         d[selName]= +d[selName];		      	
+		      });
+	     // Create line
+	     g.append("path")
+	    .datum(data)
+	    .attr("id", selName)
+	    .attr("fill", "none")
+	    .attr("stroke", createRandomColor())
+	    //.attr("stroke-linejoin", "round")
+	    //.attr("stroke-linecap", "round")
+	    .attr("stroke-width", 5)
+	    .attr("d", newLine);
 
-         }
-	      	
-	      });
-	
-		     g.append("path")
-		    .datum(data)
-		    .attr("fill", "none")
-		    .attr("stroke", createRandomColor())
-		    .attr("stroke-linejoin", "round")
-		    .attr("stroke-linecap", "round")
-		    .attr("stroke-width", 5)
-		    .attr("d", newLine);
-
-
-        g.selectAll("dot")
+	     g.selectAll("dot")
           .data(data)
           .enter().append("circle")
             .attr("r", 3.5)
@@ -135,10 +130,13 @@
                 return;
                 }else{
               return y(d[selName]); }});
-		})
-		// Add in mouse over functionality, possibly zoom in? 
-           
+
+		} //End of if statement
+	})//End of adding lines
+	
+	// Add in mouse over functionality, possibly zoom in?   
     });	
+
     </script>
      
 </body>
