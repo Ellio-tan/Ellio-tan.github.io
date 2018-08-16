@@ -8,7 +8,7 @@
 	    position: absolute;			
 	    text-align: center;			
 	    width: auto;					
-	    height: 28px;					
+	    height: auto;					
 	    padding: 2px;				
 	    font: 12px sans-serif;		
 	    background: lightsteelblue;	
@@ -22,7 +22,14 @@
 <body>
 <select id = "playerName"></select>
 <h1>Timeline of NorCal PR Players in Super Smash Bros Melee</h1>
-  <svg width = "900" height = "650"></svg> 
+<svg id = "lineGraph" width = "650" height = "650"></svg> 
+<p>
+
+This has been my favourite project as of yet to work with, both in terms of challenge and interest in subject matter. I first found this dataset through the Norcal Melee Group, where someone posted the raw dataset. The original dataset was not ideal for use with d3, so I had to use Pandas to manipulate the data. I did this by importing the original dataset as a Dataframe object, manipulating the data to get it to a useable format, and then exported that to csv. Additional challenges I had found in the project included displaying multiple lines cleanly, setting up the scatterplot overlay without displaying 0 values, and adding in user selected lines. I chose not to display how large the PRs were for each time of ranking to clean up the graph, so it would be neat to have that variable in another sort of visualization. </br>
+</br>
+
+This subject matter is one of great interest to me, as I've always been interested in the history of various players within NorCal. It's very interesting to see players who have stayed on top of the rankings for consecutive years, and those who have gaps. It was also interesting to see who has stuck around the longest, and who seems to be on an upswing. 
+</p>
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
   <script>
@@ -38,7 +45,7 @@
 
 
     //Create border margins for the svg element
-  var svg = d3.select("svg"),
+  var svg = d3.select("#lineGraph"),
     margin = {top: 20, right: 20, bottom: 50, left: 100},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom,
@@ -53,6 +60,7 @@
   		return key !=="date";
   		});
 
+  	seriesName = seriesName.sort();
 //Set up tooltip
 var div = d3.select("body").append("div")	//Append a div under class tooltip
     .attr("class", "tooltip")				
@@ -133,11 +141,16 @@ var div = d3.select("body").append("div")	//Append a div under class tooltip
 	      .x(function(d) {return x(d.date); }) 
 	      .y(function(d) { return y(d[selName]); }); // needs to be in the brackets 
 
+	      var numOn = 0;
 	     data.forEach(function(d){ //Parse values to type int 
+		   if (d[selName] != 0){
+		   	numOn +=1
+		   }
 		    d[selName]= +d[selName];	
+		  
 		})
 		 
-
+	    
 
 	     var color = createRandomColor()
 	     // Create line
@@ -167,9 +180,9 @@ var div = d3.select("body").append("div")	//Append a div under class tooltip
 					.duration(200)
 					.style('opacity', .9);
 				div
-					.html( name+ "</br>" )
+					.html( "<b>" +name + "</b>" + "</br>" + d.date + "</br>" + "Number of times on PR: " + numOn)
 					.style("left", (d3.event.pageX) + "px")			    
-					.style("top", (d3.event.pageY - 28) + "px")
+					.style("top", (d3.event.pageY - 40) + "px")
 			})
 				.on("mouseout", function(d) { // mouseout function which removes div? 
 			//d3.select(this)
