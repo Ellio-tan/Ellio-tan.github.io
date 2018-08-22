@@ -18,21 +18,25 @@ h2{
 a{
 	color: #2c333f;
 }
+.aboutMe{
+    margin-top: 40px;
+    border-style: solid;
+    text-align: center;
+    background: rgb(125, 138, 160, 0.6);
+}
 .links{
-
-	text-align: center;
-	padding: 10px;
-	font-size: 20px;
+    border-style: solid;
+    background: rgb(126, 168, 234, 0.6);    
+    text-align: center;
+    padding: 10;
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.06em; 
-    line-height: 10px;
+    line-height:15px;
 }
 
 .contact{
 
-	text-align: center;
-	margin: 40px;
-}
-.bio{
-	display: none;
+    text-align: center;
+    margin: 40px;
 }
